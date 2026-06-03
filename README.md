@@ -30,6 +30,7 @@ proyecto-web-crisis/
 │   └── presupuesto.png # Imagen descriptiva para el simulador familiar
 │
 └── README.md           # Documentación técnica e institucional del proyecto
+# Simulador Web de Abastecimiento, Precios y Consumo Familiar en Contextos de Crisis
 #<span style="color: #0056b3;">Simulador Web de Impacto Económico en Contexto de Crisis</span>
 
 ## <span style="color: #0056b3;">📝 Descripción General del Proyecto</span>
