@@ -30,146 +30,201 @@ proyecto-web-crisis/
 │   └── presupuesto.png # Imagen descriptiva para el simulador familiar
 │
 └── README.md           # Documentación técnica e institucional del proyecto
-## 🧮 Desglose de Escenarios, Decisiones de Desarrollo y Fórmulas Matemáticas
+#<span style="color: #0056b3;">Simulador Web de Impacto Económico en Contexto de Crisis</span>
 
-### 1. Escenario B: Simulador de Precios de Alimentos (`index_abas`)
+## <span style="color: #0056b3;">📝 Descripción General del Proyecto</span>
+[cite_start]Este simulador interactivo ha sido desarrollado como parte del Desafío Final de Programación Web I[cite: 1]. [cite_start]Su propósito principal es aplicar modelos matemáticos sencillos para calcular y visualizar cómo diversos factores de la coyuntura actual afectan directamente la economía de los hogares bolivianos[cite: 5, 8]. 
 
-#### 🔹 Qué se realizó en este escenario:
-Se desarrolló una interfaz web interactiva que permite registrar alimentos, capturando su precio anterior, su precio actual, la cantidad que consume una familia a la semana y el número de semanas en análisis. El sistema procesa los datos y genera de forma dinámica filas en una tabla con los resultados financieros calculados en tiempo real.
-
-#### 🔹 Por qué se hizo así:
-* **Separación de Archivos:** Se vinculó la vista `index_abas` con su propia hoja de estilos `css/estilos1` y su lógica en `js/script.js`. Se decidió estructurarlo así para mantener un código limpio y modular, evitando que las reglas de diseño o las funciones lógicas interfieran con los demás escenarios del proyecto.
-* **Uso de Tablas Dinámicas:** Se optó por mostrar los resultados dentro de una tabla estructurada en lugar de simples textos sueltos. Esto permite al usuario comparar visualmente varios productos uno tras otro y comprender el impacto acumulativo de la inflación en la canasta básica.
-* **Validación de Datos:** En el script se programó un control estricto que rechaza campos vacíos o números negativos antes de hacer cualquier cálculo, garantizando que el simulador sea estable y no muestre errores matemáticos en pantalla.
-
-#### 🔹 Fórmulas matemáticas aplicadas:
-
-* **Título de la Fórmula: Porcentaje de Aumento de Precios**
-  * **Uso en el sistema:** Programada dentro de `js/script.js` para calcular la tasa de variación relativa que sufrió el costo del producto, mostrando el porcentaje exacto de inflación que afectó a ese alimento.
-  * **Expresión matemática:**
-    $$\text{Porcentaje de Aumento} = \left( \frac{\text{Precio Actual} - \text{Precio Anterior}}{\text{Precio Anterior}} \right) \times 100$$
-
-* **Título de la Fórmula: Gasto Mensual Estimado Actual**
-  * **Uso en el sistema:** Implementada en `js/script.js` para proyectar el costo operativo monetario total que demanda la compra de ese insumo básico bajo los nuevos precios vigentes del mercado.
-  * **Expresión matemática:**
-    $$\text{Gasto Mensual Actual} = \text{Precio Actual} \times \text{Cantidad Consumida Semanal} \times \text{Número de Semanas}$$
-
-* **Título de la Fórmula: Diferencia de Gasto (Impacto Financiero)**
-  * **Uso en el sistema:** Utilizada en `js/script.js` para cuantificar la pérdida real del poder de compra del hogar, reflejando el monto neto adicional en bolivianos que se debe pagar para adquirir exactamente las mismas unidades.
-  * **Expresión matemática:**
-    $$\text{Diferencia de Gasto} = (\text{Precio Actual} - \text{Precio Anterior}) \times \text{Cantidad Consumida Semanal} \times \text{Número de Semanas}$$
+[cite_start]El proyecto se enfoca en analizar tres problemáticas clave mediante herramientas digitales interactivas: la subida en el precio de los alimentos de la canasta familiar, el incremento en los costos de traslado debido a desvíos viales y la gestión de un presupuesto familiar limitado frente a la inflación.
 
 ---
 
-### 2. Escenario C: Simulador de Costo de Transporte (`indexfami`)
+## <span style="color: #0056b3;">🥑 Escenario B: Simulador de Precios de Alimentos</span>
 
-#### 🔹 Qué se realizó en este escenario:
-Se construyó una calculadora de gastos de movilidad donde el usuario introduce la distancia de su ruta normal en kilómetros, la distancia de la ruta con desvío o desvío vial, el costo cobrado por kilómetro y la cantidad de viajes que realiza semanalmente. La aplicación calcula inmediatamente la diferencia económica del traslado.
+### <span style="color: #0056b3;">1. ¿Cómo Funciona?</span>
+1. [cite_start]**Captura de Datos:** A través de un formulario con estructura HTML5, el usuario introduce el nombre de un alimento básico (ej. Arroz, Papa, Aceite), su precio anterior, su precio actual, la cantidad que consume semanalmente y el número de semanas a evaluar[cite: 17, 59, 60, 61, 62, 63].
+2. [cite_start]**Validación:** El código JavaScript verifica que no existan campos vacíos y que los precios introducidos sean valores numéricos reales mayores a cero[cite: 191].
+3. [cite_start]**Cálculo de Variables:** Al presionar el botón de calcular, el script procesa de forma interna la tasa porcentual del incremento y el impacto acumulado[cite: 14, 192].
+4. [cite_start]**Muestra Dinámica:** Utilizando la manipulación del DOM, la sección de resultados despliega de manera inmediata (sin recargar la página) tarjetas de datos que le revelan al usuario exactamente cuánto dinero extra está gastando la familia por el encarecimiento de ese producto[cite: 15, 18, 71].
 
-#### 🔹 Por qué se hizo así:
-* **Independencia Estilística y Lógica:** Se asignó de manera exclusiva el archivo `css/estilos2` y el archivo `js/script2.js` a esta sección. Se hizo así porque el transporte maneja variables operativas distintas a la compra de víveres (kilómetros y frecuencias de viaje), requiriendo un diseño visual enfocado en formularios de transporte y tarjetas de alerta logística.
-* **Enfoque de Planificación Familiar:** Se diseñó con el propósito de servir como una herramienta de simulación preventiva. Al mostrar el gasto adicional proyectado, permite a un ciudadano o estudiante prever de cuánto debe ser su fondo de emergencia para transportarse en situaciones de conflicto vial o bloqueos.
+### <span style="color: #0056b3;">2. Fórmulas Matemáticas del Escenario B</span>
 
-#### 🔹 Fórmulas matemáticas aplicadas:
+* [cite_start]**Incremento Neto del Precio:** [cite: 65, 196]
+  $$\text{Incremento} = \text{Precio Actual} - \text{Precio Anterior}$$
 
-* **Título de la Fórmula: Costo de Viaje en Ruta Normal**
-  * **Uso en el sistema:** Ejecutada en `js/script2.js` para establecer la línea base financiera del usuario, determinando el costo regular del transporte en condiciones óptimas de circulación.
-  * **Expresión matemática:**
-    $$\text{Costo Normal Semanal} = \text{Distancia Normal} \times \text{Costo por Kilómetro} \times \text{Viajes por Semana}$$
+* [cite_start]**Porcentaje de Aumento de Costo:** [cite: 66, 196]
+  $$\text{Porcentaje de Aumento} = \left( \frac{\text{Precio Actual} - \text{Precio Anterior}}{\text{Precio Anterior}} \right) \times 100$$
 
-* **Título de la Fórmula: Costo de Viaje con Ruta de Desvío**
-  * **Uso en el sistema:** Utilizada en `js/script2.js` para calcular el incremento del costo operativo provocado por el aumento de kilometraje al tomar rutas alternas o desvíos de emergencia.
-  * **Expresión matemática:**
-    $$\text{Costo con Desvío Semanal} = \text{Distancia con Desvío} \times \text{Costo por Kilómetro} \times \text{Viajes por Semana}$$
+* [cite_start]**Gasto Semanal Anterior y Actual:** [cite: 67]
+  $$\text{Gasto Semanal Anterior} = \text{Precio Anterior} \times \text{Cantidad Semanal}$$
+  $$\text{Gasto Semanal Actual} = \text{Precio Actual} \times \text{Cantidad Semanal}$$
 
-* **Título de la Fórmula: Gasto Adicional por Contingencia Vial**
-  * **Uso en el sistema:** Aplicada en `js/script2.js` para restar ambos costos y aislar monetariamente la brecha o pérdida económica neta causada por las alteraciones del entorno logístico.
-  * **Expresión matemática:**
-    $$\text{Gasto Adicional} = \text{Costo con Desvío Semanal} - \text{Costo Normal Semanal}$$
+* [cite_start]**Gasto Total Adicional en el Periodo:** [cite: 68, 69]
+  $$\text{Diferencia Total Cobrada} = (\text{Gasto Semanal Actual} - \text{Gasto Semanal Anterior}) \times \text{Semanas Evaluadas}$$
 
----
+### <span style="color: #0056b3;">3. Caso de Estudio para Pruebas (Alimentos)</span>
+[cite_start]Para comprobar que los algoritmos de JavaScript funcionen según lo requerido, se puede ingresar este lote de prueba en el simulador[cite: 135, 144]:
 
-### 3. Escenario D: Simulador de Compras Familiares (`indexsum`)
-
-#### 🔹 Qué se realizó en este escenario:
-Se diseñó un simulador financiero de control presupuestario. El usuario ingresa el dinero total disponible en su presupuesto familiar, el precio unitario de un artículo y la cantidad de unidades que necesita adquirir. El sistema evalúa la viabilidad de la compra y emite un diagnóstico con alertas visuales.
-
-#### 🔹 Por qué se hizo así:
-* **Semaforización Dinámica del DOM:** Se enlazó a `css/estilos3` y `js/script3.js`. Se programó de esta manera para modificar las clases CSS del contenedor de resultados en tiempo real mediante JavaScript. Si el dinero es suficiente, la pantalla se ilumina en verde; si está en niveles críticos, cambia a amarillo; y si hay déficit, se inyecta una alerta en color rojo. Se hizo así para proporcionar una experiencia de usuario sumamente intuitiva y clara.
-* **Control de Saldos Negativos:** En lugar de bloquear la operación o lanzar un aviso genérico de error cuando el dinero no alcanza, se programó el sistema para que realice una resta inversa. De este modo, se le muestra de manera exacta al usuario la cantidad de dinero faltante, ayudándole a reorganizar su presupuesto.
-
-#### 🔹 Fórmulas matemáticas aplicadas:
-
-* **Título de la Fórmula: Costo Total de Adquisición**
-  * **Uso en el sistema:** Procesada en `js/script3.js` para consolidar el valor monetario de facturación total que demanda el volumen de insumos solicitados antes de comprobar la caja de fondos.
-  * **Expresión matemática:**
-    $$\text{Total de la Compra} = \text{Precio Unitario del Producto} \times \text{Cantidad de Unidades}$$
-
-* **Título de la Fórmula: Saldo Remanente o Déficit Financiero**
-  * **Uso en el sistema:** Operada en `js/script3.js` para calcular el balance final. Un resultado positivo indica capacidad de ahorro, mientras que un resultado negativo determina matemáticamente el dinero faltante para cubrir la necesidad.
-  * **Expresión matemática:**
-    $$\text{Balance de Dinero} = \text{Presupuesto Familiar} - \text{Total de la Compra}$$
-
-* **Título de la Fórmula: Proporción e Impacto Presupuestario**
-  * **Uso en el sistema:** Empleada en `js/script3.js` para obtener el porcentaje del salario o fondo consumido por la compra, sirviendo como parámetro para activar los estilos CSS de alerta (Bajo $\le 30\%$, Medio $> 30\%$ y $\le 75\%$, Alto $> 75\%$).
-  * **Expresión matemática:**
-    $$\text{Porcentaje de Consumo} = \left( \frac{\text{Total de la Compra}}{\text{Presupuesto Familiar}} \right) \times 100$$
-## 🧮 Desglose de Escenarios, Decisiones de Desarrollo y Fórmulas Matemáticas
+| Producto | Precio Anterior | Precio Actual | Cantidad Mensual | Resultado Esperado |
+| :--- | :---: | :---: | :---: | :--- |
+| **Arroz** | 8 Bs. | 11 Bs. | 10 unidades | Gasto Anterior: 80 Bs. / Gasto Actual: 110 Bs. [cite_start]/ **Diferencia: +30 Bs.** [cite: 144, 146] |
+| **Papa** | 7 Bs. | 10 Bs. | 8 unidades | Gasto Anterior: 56 Bs. / Gasto Actual: 80 Bs. [cite_start]/ **Diferencia: +24 Bs.** [cite: 144, 146] |
+| **Aceite** | 12 Bs. | 18 Bs. | 4 unidades | Gasto Anterior: 48 Bs. / Gasto Actual: 72 Bs. [cite_start]/ **Diferencia: +24 Bs.** [cite: 144, 146] |
 
 ---
 
-### 🛒 Escenario B: Simulador de Precios de Alimentos (`index_abas.html`)
+## <span style="color: #0056b3;">🚌 Escenario C: Simulador de Costo de Transporte</span>
 
-> **Propósito del Módulo:** Cuantificar el incremento porcentual y monetario en los productos esenciales de la canasta familiar, determinando cuánto dinero extra gasta un hogar debido a la inflación semanal y mensual.
+### <span style="color: #0056b3;">1. ¿Cómo Funciona?</span>
+1. [cite_start]**Captura de Datos:** El usuario ingresa la distancia normal de su ruta diaria, la nueva distancia recorrida obligatoriamente tras un desvío o bloqueo, el costo operativo por kilómetro y el número total de viajes que realiza en la semana[cite: 77, 78, 79, 80].
+2. [cite_start]**Validación:** JavaScript comprueba de forma lógica que la distancia alternativa con desvío sea mayor a la distancia original de la ruta limpia[cite: 191].
+3. [cite_start]**Cálculo de Variables:** El motor JavaScript efectúa las restas y multiplicaciones correspondientes para determinar la fuga financiera por viaje, por semana y por mes[cite: 81, 192].
+4. [cite_start]**Muestra Dinámica:** Se ayuda del DOM de la aplicación para mostrar los resultados en pantalla[cite: 15]. [cite_start]Si el gasto adicional acumulado sobrepasa los límites razonables, los estilos de las tarjetas cambian de color dinámicamente a un tono de alerta crítico[cite: 195].
 
-#### 🛠️ Desarrollo Realizado y Justificación Técnica
+### <span style="color: #0056b3;">2. Fórmulas Matemáticas del Escenario C</span>
 
-* **Estructura Modular:** Se enlazó de forma exclusiva a `css/estilos1.css` y `js/script.js`. Se diseñó así para aislar las variables de la canasta básica y evitar que los estilos de visualización colisionen con los demás módulos de la aplicación.
-* **Inyección de Tablas Dinámicas:** En lugar de mostrar resultados en textos planos, cada cálculo genera una fila dentro de una tabla organizada. Esto permite al usuario registrar múltiples alimentos de manera consecutiva y comparar visualmente el impacto acumulado en su economía familiar.
-* **Control de Excepciones:** Se programó una validación previa al cálculo que detiene el envío del formulario si existen campos vacíos o valores menores o iguales a cero, asegurando la consistencia matemática de los datos expuestos.
+* [cite_start]**Costo Financiero de la Ruta Normal:** [cite: 82]
+  $$\text{Costo Normal} = \text{Distancia Normal} \times \text{Costo por Kilómetro}$$
 
-#### 📈 Fórmulas Matemáticas Utilizadas
+* [cite_start]**Costo Financiero con Ruta Desviada:** [cite: 83]
+  $$\text{Costo con Desvío} = \text{Distancia con Desvío} \times \text{Costo por Kilómetro}$$
 
-| Título de la Fórmula | Archivo donde se usa | Uso en el Sistema | Expresión Matemática |
-| :--- | :---: | :--- | :--- |
-| **Porcentaje de Aumento de Precios** | `js/script.js` | Mide el porcentaje de inflación real que ha sufrido el costo unitario de un alimento básico desde su precio anterior hasta el actual. | $$\text{Porcentaje de Aumento} = \left( \frac{\text{Precio Actual} - \text{Precio Anterior}}{\text{Precio Anterior}} \right) \times 100$$ |
-| **Gasto Mensual Estimado Actual** | `js/script.js` | Proyecta el costo financiero total que demanda la adquisición de un insumo según los nuevos precios del mercado vigentes. | $$\text{Gasto Mensual Actual} = \text{Precio Actual} \times \text{Cantidad Semanal} \times \text{Semanas}$$ |
-| **Diferencia de Gasto (Impacto Financiero)** | `js/script.js` | Cuantifica la pérdida del poder adquisitivo, reflejando el monto neto extra en bolivianos que la familia debe pagar por las mismas unidades. | $$\text{Diferencia de Gasto} = (\text{Precio Actual} - \text{Precio Anterior}) \times \text{Cantidad Semanal} \times \text{Semanas}$$ |
+* [cite_start]**Gasto Adicional Neto por Viaje:** [cite: 84, 196]
+  $$\text{Costo Adicional por Viaje} = (\text{Distancia con Desvío} - \text{Distancia Normal}) \times \text{Costo por Kilómetro}$$
 
----
+* [cite_start]**Impacto Financiero Semanal:** [cite: 85]
+  $$\text{Gasto Adicional Semanal} = \text{Costo Adicional por Viaje} \times \text{Viajes por Semana}$$
 
-### 🚌 Escenario C: Simulador de Costo de Transporte (`indexfami.html`)
+* [cite_start]**Impacto Financiero Mensual Proyectado:** [cite: 85]
+  $$\text{Gasto Adicional Mensual} = \text{Gasto Adicional Semanal} \times 4 \text{ semanas}$$
 
-> **Propósito del Módulo:** Estimar el impacto económico y el gasto logístico adicional provocado por la alteración de rutas tradicionales ante bloqueos, desvíos o contingencias en las vías de tránsito habituales.
+### <span style="color: #0056b3;">3. Caso de Estudio para Pruebas (Transporte)</span>
+[cite_start]Para verificar las operaciones matemáticas exactas del archivo de control `script.js`, ingresa los siguientes datos oficiales[cite: 147, 148]:
 
-#### 🛠️ Desarrollo Realizado y Justificación Técnica
+* [cite_start]**Distancia normal:** 10 km [cite: 148]
+* [cite_start]**Distancia con desvío:** 16 km [cite: 148]
+* [cite_start]**Costo por km:** 2 Bs. [cite: 148]
+* [cite_start]**Viajes por semana:** 5 viajes [cite: 148]
 
-* **Especialización Logística:** Se asignaron los archivos `css/estilos2.css` y `js/script2.js` de forma independiente. Debido a que el transporte no evalúa productos sino distancias, tramos y frecuencias de viaje, requería un entorno lógico aislado del comercio de víveres.
-* **Simulación Preventiva:** El entorno gráfico se estructuró con tarjetas de información rápidas para que usuarios de transporte público o privado midan pérdidas kilométricas. Al reflejar el "gasto adicional", la herramienta ayuda a prever presupuestos de emergencia vial en situaciones de conflicto o desvíos.
-
-#### 🛣️ Fórmulas Matemáticas Utilizadas
-
-| Título de la Fórmula | Archivo donde se usa | Uso en el Sistema | Expresión Matemática |
-| :--- | :---: | :--- | :--- |
-| **Costo de Viaje en Ruta Normal** | `js/script2.js` | Establece la línea base financiera del usuario, determinando el costo regular del transporte en condiciones óptimas de circulación. | $$\text{Costo Normal Semanal} = \text{Distancia Normal} \times \text{Costo por Kilómetro} \times \text{Viajes por Semana}$$ |
-| **Costo de Viaje con Ruta de Desvío** | `js/script2.js` | Calcula el incremento del costo operativo provocado por el aumento de kilometraje al tomar rutas alternas o desvíos de emergencia. | $$\text{Costo con Desvío Semanal} = \text{Distancia con Desvío} \times \text{Costo por Kilómetro} \times \text{Viajes por Semana}$$ |
-| **Gasto Adicional por Contingencia Vial** | `js/script2.js` | Resta ambos costos para aislar monetariamente la brecha o pérdida económica neta causada por las alteraciones del entorno logístico. | $$\text{Gasto Adicional} = \text{Costo con Desvío Semanal} - \text{Costo Normal Semanal}$$ |
+[cite_start]**Resultado en pantalla esperado:** El sistema debe desplegar de manera interactiva un gasto adicional acumulado de exactamente **`60 Bs.`** a la semana[cite: 150].
 
 ---
 
-### 💰 Escenario D: Simulador de Compras Familiares (`indexsum.html`)
+## <span style="color: #0056b3;">💰 Escenario D: Simulador de Compras Familiares</span>
 
-> **Propósito del Módulo:** Evaluar la viabilidad financiera de la canasta básica familiar contrastando un presupuesto límite contra el costo real de adquisición, emitiendo diagnósticos dinámicos del estado del capital.
+### <span style="color: #0056b3;">1. ¿Cómo Funciona?</span>
+1. [cite_start]**Captura de Datos:** El usuario interactúa con un formulario interactivo donde introduce el presupuesto total disponible de la familia, el precio de los productos de su lista básica y la cantidad de unidades que planea adquirir[cite: 17, 93, 94, 95].
+2. [cite_start]**Validación:** El sistema evalúa mediante JavaScript que todos los inputs contengan números válidos y que el presupuesto no sea un valor negativo[cite: 191].
+3. [cite_start]**Cálculo de Variables:** La aplicación calcula el total de la compra planificada, resta este valor del dinero disponible para hallar el saldo restante y, en caso negativo, calcula la cantidad exacta de dinero faltante[cite: 96, 97, 98, 99].
+4. [cite_start]**Muestra Dinámica y Clasificación:** A través del DOM, la página muestra inmediatamente un mensaje claro indicando si el dinero alcanza o no alcanza para cubrir los alimentos básicos[cite: 15, 102]. [cite_start]Adicionalmente, el sistema clasifica automáticamente el nivel del gasto (bajo, medio o alto) y cambia el color del contenedor de resultados para reflejar este estado financiero[cite: 100, 195].
 
-# 🛠️ Desarrollo Realizado y Justificación Técnica
+### <span style="color: #0056b3;">2. Fórmulas Matemáticas del Escenario D</span>
 
-* **Semaforización Dinámica del DOM:** Vinculado con `css/estilos3.css` y `js/script3.js`. Se programó el script para alterar en tiempo real las clases CSS del contenedor de resultados. Dependiendo del porcentaje del presupuesto consumido, la pantalla cambia visualmente (Verde = Seguro, Amarillo = Crítico, Rojo = Fondos Insuficientes).
-* **Análisis de Balance Inverso:** Cuando el dinero disponible es menor al costo de la compra, el sistema no se bloquea; ejecuta una operación matemática inversa para mostrar en pantalla la cifra exacta de dinero faltante, facilitando la reorganización del gasto doméstico.
+* [cite_start]**Total de la Compra:** [cite: 97, 196]
+  $$\text{Total Compra} = \text{Precio de Producto} \times \text{Cantidad a Comprar}$$
 
-# 📊 Fórmulas Matemáticas Utilizadas
+* [cite_start]**Cálculo de Saldo Disponible (Si el presupuesto es mayor o igual al total):** [cite: 98]
+  $$\text{Saldo Restante} = \text{Presupuesto Familiar} - \text{Total Compra}$$
 
-| Título de la Fórmula | Archivo donde se usa | Uso en el Sistema | Expresión Matemática |
-| :--- | :---: | :--- | :--- |
-| **Costo Total de Adquisición** | `js/script3.js` | Consolida el valor total de la transacción que demanda el volumen de insumos solicitados antes de verificar la disponibilidad de fondos en caja. | $$\text{Total de la Compra} = \text{Precio Unitario del Producto} \times \text{Cantidad de Unidades}$$ |
-| **Saldo Remanente o Déficit Financiero** | `js/script3.js` | Determina el balance final de la caja familiar. Un resultado positivo indica capacidad de ahorro; un resultado negativo calcula con precisión el dinero faltante. | $$\text{Balance de Dinero} = \text{Presupuesto Familiar} - \text{Total de la Compra}$$ |
-| **Proporción e Impacto Presupuestario** | `js/script3.js` | Obtiene el ratio de consumo financiero del hogar, sirviendo como parámetro lógico para activar los colores de alerta visual en el CSS. | $$\text{Porcentaje de Consumo} = \left( \frac{\text{Total de la Compra}}{\text{Presupuesto Familiar}} \right) \times 100$$ |
+* [cite_start]**Cálculo de Monto Faltante (Si el presupuesto es menor al total):** [cite: 99]
+  $$\text{Monto Faltante} = \text{Total Compra} - \text{Presupuesto Familiar}$$
+
+### <span style="color: #0056b3;">3. Caso de Estudio para Pruebas (Presupuesto)</span>
+[cite_start]Para verificar que las condicionales lógicas de JavaScript funcionen correctamente al evaluar si el dinero es suficiente, utiliza los siguientes parámetros[cite: 151, 152]:
+
+* [cite_start]**Presupuesto disponible:** 500 Bs. [cite: 152]
+* [cite_start]**Total de la compra realizada:** 580 Bs. [cite: 152]
+
+[cite_start]**Resultado en pantalla esperado:** El simulador debe arrojar un mensaje dinámico indicando que el presupuesto **no alcanza** y reflejar un monto faltante de exactamente **`80 Bs.`**[cite: 154].
+
+---
+
+## <span style="color: #0056b3;">🛠️ Requisitos Técnicos e Implementación</span>
+* [cite_start]**Estructura Semántica:** Marcación pura HTML5 (`<header>`, `<main>`, `<section>`, `<article>`, `<footer_>`)[cite: 161].
+* [cite_start]**Estilos Externos:** Archivo `estilos.css` enlazado de manera externa con diseño fluido y responsivo adaptado mediante Media Queries para Smartphones, Tablets y Computadoras de escritorio[cite: 161, 162].
+* [cite_start]**Lógica en JavaScript:** Archivo `script.js` independiente que procesa la lógica matemática de las variables capturadas desde los inputs y muta los resultados en el DOM sin recargas de pantalla[cite: 161].
+* [cite_start]**Control de Versiones:** Repositorio estructurado ordenadamente en carpetas y subido a GitHub, publicado mediante GitHub Pages para su visualización y evaluación libre en internet[cite: 162].
+# <p align="center" style="color: #1e3a8a; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 2.2em; font-weight: bold; margin-bottom: 5px;">Simulador Web de Impacto Económico en Contexto de Crisis</p>
+
+---
+
+## <span style="color: #1e3a8a; font-family: sans-serif; border-bottom: 2px solid #2563eb; padding-bottom: 5px; display: block;">🥑 3. Escenario B: Simulador de Precios de Alimentos</span>
+
+### <span style="color: #2563eb;">3.1 Flujo Operacional</span>
+* **Entrada de Datos:** El usuario declara las especificaciones del alimento básico mediante el formulario nativo (nombre, costo histórico, costo vigente, tasa de consumo y semanas de proyección).
+* **Control de Calidad (Validación):** El motor JS intercepta el evento de cálculo para bloquear campos vacíos o valores incoherentes ($\leq 0$).
+* **Procesamiento de Datos:** El sistema calcula el incremento aritmético absoluto y el comportamiento porcentual indexado de la inflación del artículo.
+* **Renderizado Dinámico:** La interfaz altera las propiedades de los nodos del DOM para pintar las tarjetas con el balance totalizado de pérdida financiera familiar sin recargar el navegador.
+
+### <span style="color: #2563eb;">3.2 Modelos Matemáticos Utilizados</span>
+* **Incremento Absoluto del Costo ($I$):**
+  $$I = \text{Precio Actual} - \text{Precio Anterior}$$
+* **Porcentaje de Variación de Costo ($\Delta\%$):**
+  $$\Delta\% = \left( \frac{\text{Precio Actual} - \text{Precio Anterior}}{\text{Precio Anterior}} \right) \times 100$$
+* **Gasto Total Extraordinario del Periodo ($G_{EA}$):**
+  $$G_{EA} = \Big[ (\text{Precio Actual} \times \text{Cant. Semanal}) - (\text{Precio Anterior} \times \text{Cant. Semanal}) \Big] \times \text{Semanas}$$
+
+### <span style="color: #2563eb;">3.3 Dataset de Validación (Caso de Estudio)</span>
+
+| Alimento Evaluado | Precio Anterior | Precio Actual | Consumo Mensual | Impacto Monetario Esperado |
+| :--- | :---: | :---: | :---: | :--- |
+| **Arroz** | 8 Bs. | 11 Bs. | 10 u. | Gasto Anterior: 80 Bs. / Actual: 110 Bs. / Diferencia: +30 Bs. |
+| **Papa** | 7 Bs. | 10 Bs. | 8 u. | Gasto Anterior: 56 Bs. / Actual: 80 Bs. / Diferencia: +24 Bs. |
+| **Aceite** | 12 Bs. | 18 Bs. | 4 u. | Gasto Anterior: 48 Bs. / Actual: 72 Bs. / Diferencia: +24 Bs. |
+
+---
+
+## <span style="color: #1e3a8a; font-family: sans-serif; border-bottom: 2px solid #2563eb; padding-bottom: 5px; display: block;">🚌 4. Escenario C: Simulador de Costo de Transporte</span>
+
+### <span style="color: #2563eb;">4.1 Flujo Operacional</span>
+* **Entrada de Datos:** Captura interactiva del kilometraje óptimo (ruta normal), el kilometraje forzado (desvíos o rutas de contingencia), el costo de operación directa por km y la frecuencia semanal de viajes.
+* **Validación:** El sistema restringe el cálculo si la distancia con desvío es menor o igual al trayecto estándar, previniendo falsos positivos.
+* **Cálculo de Variables:** JavaScript procesa el impacto financiero marginal multiplicando las diferencias de kilometraje por los factores económicos.
+* **Manejo del DOM y Alertas:** Actualiza el layout y cambia las clases de CSS dinámicamente si el nuevo gasto altera críticamente el presupuesto de transporte (alertas condicionales en color rojo).
+
+### <span style="color: #2563eb;">4.2 Modelos Matemáticos Utilizados</span>
+* **Costo Adicional Neto por Trayecto ($C_{AT}$):**
+  $$C_{AT} = (\text{Distancia con Desvío} - \text{Distancia Normal}) \times \text{Costo por Kilómetro}$$
+* **Gasto Adicional Semanal Acumulado ($G_{AS}$):**
+  $$G_{AS} = C_{AT} \times \text{Viajes por Semana}$$
+* **Proyección de Desfase Financiero Mensual ($P_M$):**
+  $$P_M = G_{AS} \times 4$$
+
+### <span style="color: #2563eb;">4.3 Dataset de Validación (Caso de Estudio)</span>
+* **Ruta Normal / Desvío:** 10 km / 16 km
+* **Costo Base por Km / Viajes Semanales:** 2 Bs. / 5 viajes
+* **Resultado Esperado:** Visualización interactiva en pantalla de un incremento de coste semanal de exactamente `60 Bs.`.
+
+---
+
+## <span style="color: #1e3a8a; font-family: sans-serif; border-bottom: 2px solid #2563eb; padding-bottom: 5px; display: block;">💰 5. Escenario D: Simulador de Compras Familiares</span>
+
+### <span style="color: #2563eb;">5.1 Flujo Operacional</span>
+* **Entrada de Datos:** El usuario suministra el monto del presupuesto de contingencia disponible del núcleo familiar, el precio unitario del catálogo de productos y el volumen de adquisición proyectado.
+* **Procesamiento de Balance:** JavaScript calcula el valor bruto totalizado de la canasta planificada y lo contrasta mediante sentencias lógicas condicionales (`if/else`) frente al presupuesto disponible.
+* **Clasificación Inteligente:** El sistema evalúa el estado presupuestario final:
+  * **Superávit:** Muestra el dinero remanente (Saldo Restante).
+  * **Déficit:** Calcula con precisión el capital que falta para completar la compra (Monto Faltante).
+* **Feedback de Estilo:** El sistema utiliza manipuladores de nodos del DOM (`classList`) para pintar el contenedor de resultados de color verde (Gasto Bajo/Medio) o rojo crítico (Presupuesto Insuficiente/Gasto Alto).
+
+### <span style="color: #2563eb;">5.2 Modelos Matemáticos Utilizados</span>
+* **Costo de Compra Planificada ($C_C$):**
+  $$C_C = \text{Precio de Producto} \times \text{Cantidad a Comprar}$$
+* **Ecuación de Saldo Restante ($S$):** *(Ejecutada si $Presupuesto \geq C_C$)*
+  $$S = \text{Presupuesto Familiar} - C_C$$
+* **Ecuación de Capital Faltante ($F$):** *(Ejecutada si $Presupuesto < C_C$)*
+  $$F = C_C - \text{Presupuesto Familiar}$$
+
+### <span style="color: #2563eb;">5.3 Dataset de Validación (Caso de Estudio)</span>
+* **Presupuesto Declarado:** 500 Bs.
+* **Monto Bruto de Compra:** 580 Bs.
+* **Resultado Esperado:** Alerta interactiva de presupuesto insuficiente e indicador dinámico de capital faltante igual a `80 Bs.`.
+
+---
+
+## <span style="color: #1e3a8a; font-family: sans-serif; border-bottom: 2px solid #2563eb; padding-bottom: 5px; display: block;">🛠️ 6. Ficha Técnica de Tecnologías Utilizadas</span>
+
+* **Markup & Estructura:** HTML5 semántico puro empleando etiquetas de organización nativa (`<header>`, `<main>`, `<section>`, `<article>`, `<footer_>`) para garantizar accesibilidad e indexación óptima.
+* **Diseño e Identidad Visual:** CSS3 modular implementando sistemas de diseño responsivo mediante **Media Queries**, asegurando adaptabilidad total en smartphones, tablets y pantallas de escritorio.
+* **Lógica del Lado del Cliente:** JavaScript estructurado (ES6+) que maneja eventos asíncronos en los formularios, realiza los procesos de cálculo de los modelos y muta el DOM en tiempo real.
+* **Despliegue Continuo:** Gestión del código fuente mediante Git y publicación mediante servidores estáticos de GitHub Pages.
